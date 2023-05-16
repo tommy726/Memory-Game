@@ -11,28 +11,35 @@
 </head>
 
 <body>
-  <div class="header">
-    <div class="title">
-      <img src="img/logo.png" alt="logo">
-      <h2>Memory Game</h2>
-    </div>
-    <div class="content">
-      <p class="score">Score: 0</p>
-      <div class="clockContainer">
-        <span class="minutes">00</span>
-        :
-        <span class="seconds">00</span>
+  <div class="game">
+    <div class="header">
+      <div class="title">
+        <img src="img/logo.png" alt="logo">
+        <h2>Memory Game</h2>
       </div>
-      <p class="tried">You've tried: 0 times</p>
+      <div class="content">
+        <p class="score">Score: 0</p>
+        <div class="clockContainer">
+          <span class="minutes">00</span>
+          :
+          <span class="seconds">00</span>
+        </div>
+        <p class="tried">You've tried: 0 times</p>
+      </div>
+    </div>
+    
+    <div class="cards"></div>
+  
+    <div class="alert">
+      <h3>請將手機擺放成橫式開始遊戲。</h3>
+    </div>
+    
+    <div class="loading-container show">
+      <div class="loading"></div>
     </div>
   </div>
-
-  <div class="cards"></div>
-
-  <div class="alert">
-    <h3>請將手機擺放成橫式開始遊戲。</h3>
-  </div>
-
+  
+  
   <script src="js/all.js"></script>
 </body>
 

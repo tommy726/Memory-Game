@@ -54,6 +54,10 @@ img {
   box-sizing: border-box;
 }
 
+.game {
+  position: relative;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -103,11 +107,27 @@ img {
   }
 }
 
+.alert {
+  display: none;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
 @media (max-width:650px) {
   .header {
     justify-content: center;
   }
+
   .content {
+    display: none;
+  }
+
+  .alert {
+    display: block;
+  }
+
+  .loading-container {
     display: none;
   }
 }
@@ -117,18 +137,6 @@ img {
   flex-wrap: wrap;
   margin: 10px auto;
   width: 95%;
-}
-
-.alert {
-  text-align: center;
-  font-size: 20px;
-  margin-top: 30px;
-}
-
-@media (min-width: 650px) {
-  .alert {
-    display: none;
-  }
 }
 
 .card {
@@ -234,4 +242,61 @@ img {
 
 .completed span {
   font-weight: bold;
+}
+
+.loading-container {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.show {
+  display: block;
+}
+
+.loading {
+  border: 5px solid  #555;
+  border-bottom: 5px solid #fff;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  -webkit-animation: loading 1s infinite linear;
+  -moz-animation: loading 1s infinite linear;
+  -o-animation: loading 1s infinite linear;
+  animation: loading 1s infinite linear;
+}
+
+@-webkit-keyframes loading {
+  from {
+      -webkit-transform: rotate(0deg);
+  }
+  to {
+      -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes loading {
+  from {
+      -moz-transform: rotate(0deg);
+  }
+  to {
+      -moz-transform: rotate(360deg);
+  }
+}
+@-o-keyframes loading {
+  from {
+      -o-transform: rotate(0deg);
+  }
+  to {
+      -o-transform: rotate(360deg);
+  }
+}
+@keyframes loading {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
 }

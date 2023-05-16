@@ -13,6 +13,16 @@ const Symbols = [
   'img/club.jpg',
 ];
 
+const preloadedImages = [];
+function preloadImages() {
+  Symbols.forEach(symbol => {
+    const image = new Image();
+    image.src = symbol;
+    preloadedImages.push(image);
+  });
+};
+preloadImages();
+
 const model = {
   revealedCards: [],
   score: 0,
@@ -51,7 +61,30 @@ const view = {
   },
   renderCards(cardNumber) {
     const cardElement = document.querySelector('.cards');
-    cardElement.innerHTML = cardNumber.map((i) => this.getCardElement(i)).join('');
+    const loading = document.querySelector('.loading-container');
+    const isImagesLoaded = preloadedImages.every(image => image.complete);
+  
+    if (isImagesLoaded) {
+      cardElement.innerHTML = cardNumber.map((i) => this.getCardElement(i)).join('');
+      loading.classList.remove('show');
+      this.enableCardClicks();
+    } else {
+      this.disableCardClicks();
+      loading.classList.add('show');
+      setTimeout(() => this.renderCards(cardNumber), 100);
+    }
+  },
+  enableCardClicks() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.addEventListener('click', () => controller.dispatchCardAction(card));
+    });
+  },
+  disableCardClicks() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.removeEventListener('click', () => controller.dispatchCardAction(card));
+    });
   },
   shuffleCards(count) {
     const number = Array.from(Array(count).keys());
@@ -185,8 +218,6 @@ const controller = {
   },
   startGame() {
     this.generateCards();
-    document.querySelectorAll('.card').forEach((card) =>
-      card.addEventListener('click', () => controller.dispatchCardAction(card)));
   },
   resetGame() {
     const div = document.querySelector('.completed');
