@@ -49,10 +49,10 @@ const view = {
   },
   getCardContent(i) {
     const number = this.transformNumber((i % 13) + 1);
-    const symbol = Symbols[Math.floor(i / 13)];
+    const symbol = preloadedImages[Math.floor(i / 13)];
     return `
         <p> ${number} </p>
-        <img src=" ${symbol} ">
+        <img src=" ${symbol.src} ">
         <p> ${number} </p>
       `;
   },
